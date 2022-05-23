@@ -22,11 +22,10 @@ class MyMonitor(FileSystemEventHandler):
         if '~$' in str(event.src_path):
             return
 
-        print(f"A new file has been detected in --> {event.src_path}")
-
         self.path_f = Path(event.src_path)
 
         if event.src_path.endswith(".xlsx") and self.path_f.is_file():
+            print(f"A new file has been detected in --> {event.src_path}")
             self.status = 1
             self.__copy_file_data(event)
             self.__move_file(event)
@@ -82,15 +81,32 @@ class MyMonitor(FileSystemEventHandler):
             print(e)
 
 
-def folder_observer(path):
+def folder_observer():
     """Main function to monitor X folder for .xlsx files to be consolidated into a master file.
 
     Args:
         path (str): _description_
     """
+    path = './workarea/'
+
+    # automatic directory creation
+    path_workarea = Path("./workarea/")
+    path_workarea.mkdir(parents=True, exist_ok=True)
+
+    path_not_applicable = Path("./workarea/Not Applicable/")
+    path_not_applicable.mkdir(parents=True, exist_ok=True)
+
+    path_processed = Path("./workarea/Processed/")
+    path_processed.mkdir(parents=True, exist_ok=True)
+
+    res = input('Do you want to choose a folder to monitor (y/n): ')
+
+    if res.lower() == 'y':
+        path = str(input('Enter the folder path: '))
+
     # Validaciones iniciales
     if not Path(MASTER_FILE).is_file():
-        print(f"The field {MASTER_FILE} does not exist, do you want to create it?")
+        print("The field Master File does not exist, do you want to create it?")
         res = input("(y/n): ")
 
         if res.lower() == 'y':

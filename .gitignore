@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 
 /exercise
+/workarea
 
 # C extensions
 *.so
