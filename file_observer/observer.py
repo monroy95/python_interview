@@ -70,6 +70,7 @@ class MyMonitor(FileSystemEventHandler):
         """
         try:
             if self.status == 0:
+                # FIXME: Windows permissions problems
                 res = shutil.move(event.src_path, "./workarea/Not Applicable/")
                 print("Moved To --> Not Applicable", res)
 
