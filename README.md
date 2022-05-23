@@ -60,12 +60,11 @@ python script.py
 And follow the program instructions
 
 ### Use Executable
+> Note: The antivirus may affect the permissions, it is recommended to use the manual execution of the script as indicated in the previous steps.
 
 Download (Windows):
 https://1drv.ms/u/s!Apqu1mWyBWrMmpBAavEq5Zommminew?e=2qGcbn
 
 
 Video Demo:
-> Note: The antivirus may affect the permissions, it is recommended to use the manual execution of the script as indicated in the previous steps.
-
 https://1drv.ms/v/s!Apqu1mWyBWrMmpBBkRiQTskh65Vu0A?e=OWAZXh
