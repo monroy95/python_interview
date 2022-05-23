@@ -115,19 +115,20 @@ def folder_observer():
         else:
             return
 
-    # Inicializacion de observador
-    observer = Observer()
-    event_handler = MyMonitor()
-    observer.schedule(event_handler, path, recursive=False)
-    observer.start()
+    if Path(MASTER_FILE).is_file():
+        # Inicializacion de observador
+        observer = Observer()
+        event_handler = MyMonitor()
+        observer.schedule(event_handler, path, recursive=False)
+        observer.start()
 
-    # Observador
-    try:
-        print('Detecting changes... (Press CTRL + C to stop the program)')
-        while True:
-            time.sleep(2)
+        # Observador
+        try:
+            print('Detecting changes... (Press CTRL + C to stop the program)')
+            while True:
+                time.sleep(2)
 
-    except KeyboardInterrupt:
-        observer.stop()
+        except KeyboardInterrupt:
+            observer.stop()
 
-    observer.join()
+        observer.join()
