@@ -1,3 +1,4 @@
 pandas
 xlwings
 watchdog
+openpyxl

@@ -5,6 +5,7 @@ __pycache__/
 
 /exercise
 /workarea
+/output
 
 # C extensions
 *.so
