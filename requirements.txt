@@ -1,0 +1,3 @@
+pandas
+xlwings
+watchdog
