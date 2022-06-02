@@ -1,3 +1,4 @@
+import os
 import shutil
 from pathlib import Path
 import time
@@ -23,6 +24,16 @@ class MyMonitor(FileSystemEventHandler):
             return
 
         self.path_f = Path(event.src_path)
+
+        # Adding a timeout for the detected file to be processed correctly
+        init_size = -1
+        while True:
+            current_size = os.path.getsize(event.src_path)
+            if current_size == init_size:
+                break
+            else:
+                init_size = os.path.getsize(event.src_path)
+                time.sleep(2)
 
         if event.src_path.endswith(".xlsx") and self.path_f.is_file():
             print(f"A new file has been detected in --> {event.src_path}")
@@ -70,9 +81,9 @@ class MyMonitor(FileSystemEventHandler):
         """
         try:
             if self.status == 0:
-                # FIXME: Windows permissions problems
-                res = shutil.move(event.src_path, "./workarea/Not Applicable/")
+                res = shutil.copy(self.path_f, r"./workarea/Not Applicable/")
                 print("Moved To --> Not Applicable", res)
+                print(f"File {self.path_f} to be moved to --> ./workarea/Not Applicable/")
 
             if self.status == 1:
                 res = shutil.move(event.src_path, "./workarea/Processed/")
